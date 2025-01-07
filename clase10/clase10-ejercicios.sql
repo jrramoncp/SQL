@@ -8,7 +8,7 @@ select rental_id, rental_date, return_date from sakila.rental where return_date 
 -- 3. Vamos a usar la tabla "category". Con un case vamos a traducir alguna de las categorias, no hace falta todas
 select * from sakila.category;
 select name,
-	case 
+	case name
 		when 'Action' then 'Accion'
 		when 'Animation' then 'Animacion'
         when 'Children' then 'Niños'
@@ -18,4 +18,28 @@ select name,
         when 'Drama' then 'Dramaticas'
         when 'Family' then 'Familiar'
         when 'Foreign' then 'Extrangeras' 
-		
+		when 'Games' then 'Videojuegos'
+        when 'Horror' then 'Terror'
+        when 'Music' then 'Musica'
+        when 'New' then 'Nuevas'
+        when 'Sci-Fi' then 'Ciencia ficcion'
+        when 'Sports' then 'Deportes'
+        when 'Travel' then 'Viajes'
+	end as 'Categorias traducidas'
+from sakila.category;
+
+-- 4. Vamos a usar la tabla payment y la columna amount según las siguientes condiciones:
+	-- a) amount <= 0.99 'Barato'
+	-- b) amount entre 1 y 4.99 'Medio'
+	-- c) amount >= 4.99 'Caro'
+    -- d) Para cual otra cosa ponemos Otros valores
+    
+select amount,
+	case 
+		when amount <= 0.99 then 'Barato'
+        when amount between 1 and 4.99 then 'Medio'
+        when amount > 4.99 then 'Caro'
+        else 'Otros valores'
+	end as Precios
+from sakila.payment;
+
