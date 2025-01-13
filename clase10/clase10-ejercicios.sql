@@ -18,7 +18,7 @@ select name,
         when 'Drama' then 'Dramaticas'
         when 'Family' then 'Familiar'
         when 'Foreign' then 'Extrangeras' 
-		when 'Games' then 'Videojuegos'
+        when 'Games' then 'Videojuegos'
         when 'Horror' then 'Terror'
         when 'Music' then 'Musica'
         when 'New' then 'Nuevas'
