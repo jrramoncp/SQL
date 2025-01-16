@@ -8,6 +8,9 @@ select name, continent, population from world.country
 select name, continent from world.country
 	where (continent = 'Asia' or continent = 'Africa');
     
+select name, continent from world.country 
+	where continent in ('Asia', 'Africa');
+    
 -- c. Países que empiecen por B y que pertenezcan a África
 select name from world.country 
 	where (name like 'B%' and continent = 'Africa');
@@ -18,11 +21,11 @@ select name, continent, LifeExpectancy from world.country
     
 -- e. Países cuyo gobierno sea República o Monarquía
 select name, GovernmentForm from world.country 
-	where (GovernmentForm = "Republic" or GovernmentForm = "Monarchy");
+	where (GovernmentForm like "%Republic%" or GovernmentForm like "%Monarchy%");
     
 -- f. Países de África que se independizaron despué de los 50 y cuyo gobierno sea república
 select name, IndepYear, GovernmentForm from world.country 
-	where (IndepYear >= 1950 and GovernmentForm = "Republic");
+	where (IndepYear >= 1950 and GovernmentForm like "%Republic%");
 
 /*2. En la base de datos sakila, buscar dónde se encuentran (en qué tabla) y extraer los
 siguientes datos:*/
@@ -40,4 +43,4 @@ select title from sakila.film
 select * from sakila.rental
 	where (rental_date >= '2005-05-15' or rental_date < 2006-01-01);
 -- e. Clientes que tienen un nombre que comienza con ‘A’
-select * from sakila.customer were first_name Like 'A%';
+select * from sakila.customer where first_name Like 'A%';
