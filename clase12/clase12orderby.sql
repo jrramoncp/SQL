@@ -21,7 +21,7 @@ aparece la columna en la consulta. Por ejemplo:
 => Ordenado por alias <=
 select name as nombre, continent, region, surfacearea from world.country order by nombre; 
 
-=> Ordenado por numero de aparcion <=
+=> Ordenado por numero de aparicion <=
 select name, continent, region, surfacearea from world.country order by 4;    --Esto ordenara por surfacearea que es la posicion 4
 
 */
