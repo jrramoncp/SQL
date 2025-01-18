@@ -13,7 +13,24 @@ select first_name, last_name from sakila.staff where locate('a', first_name) != 
 -- f. Visualiza el nombre y la última letra del nombre
 select first_name, substr(first_name, length(first_name)) as 'Ultima letra' from sakila.staff;
 -- g. Visualiza el nombre y la última letra del nombre, pero sólo si esta última letra es una vocal
-select first_name, substr(first_name, length(first_name)) as 'Ultima letra' from sakila.staff where substr(first_name, length(first_name)) 'e';
+select first_name, substr(first_name, length(first_name)) as 'Ultima letra' from sakila.staff where substr(first_name, length(first_name)) ='e';
 -- h. Extraer del correo del empleado solo una parte del nombre. Elimina lo que hay desde el ‘@’ hasta el final.
-
 select substr(email,1, length(concat(first_name, ".", last_name))) from sakila.staff;
+
+-- 2. En la tabla customer, visualiza los siguientes datos:
+-- a. Visualizar el customer id y decir si es impar o par.
+
+select * from sakila.customer;
+select customer_id, 
+	case
+		when mod(customer_id, 2) = 0 then "Par"
+		else "Impar"
+	end as id_par_impar
+from sakila.customer order by customer_id asc;
+
+
+-- 3. En la tabla payment:
+-- a. Visualiza el numero entero inferior y el posterior de la columna amount.
+select * from sakila.payment;
+
+select amount, floor(amount) as inferior, ceil(amount) as superior from sakila.payment;
