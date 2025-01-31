@@ -8,10 +8,11 @@ select city.CountryCode as Codigo_pais, count(city.name) as total_ciudades, coun
 from world.city inner join world.country
 on city.CountryCode = country.Code
 group by CountryCode;
--- 11. Encuentra los países cuya población total es superior a 100 millones
-select Name, Population
+-- 11. Encuentra los continentes cuya población total es superior a 100 millones
+select Continent, SUM(Population) as Población
 from world.country
-where Population > 1000000000;
+Group By Continent
+having Population > 1000000000;
 -- 12. Encuentra la cantidad de idiomas oficiales en cada país
 select * from world.countrylanguage;
 select countrylanguage.CountryCode, country.Name, count(countrylanguage.Language) as lenguas_oficiales
