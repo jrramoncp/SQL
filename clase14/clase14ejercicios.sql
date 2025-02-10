@@ -19,11 +19,34 @@ ON FABRICANTES.Codigo = ARTICULOS.FABRICANTE
 GROUP BY FABRICANTES.Codigo
 HAVING Nombre = 'Fabricante 3';
 -- g. Calcular el número de artículos cuyo precio sea menor o igual a 160€
-SELECT Precio, sum(count(nombre)) as 'Numero articulos'
-FROM ARTICULOS
-WHERE Precio <= 160;
+select count(precio) as "TotalPrecios"
+from ARTICULOS
+where precio <= 160;
 -- h. Obtener un listado completo de artículos en el que aparezca el nombre del artículo y el nombre del fabricante
+select ARTICULOS.Nombre, FABRICANTES.Nombre
+FROM ARTICULOS RIGHT JOIN FABRICANTES
+ON ARTICULOS.FABRICANTE = FABRICANTES.Codigo
+order by FABRICANTES.nombre ASC;
 -- i. Obtener el precio medio de los productos de cada fabricante
+select FABRICANTES.Nombre, avg(ARTICULOS.Precio) as 'Precio_Medio'
+FROM FABRICANTES RIGHT JOIN ARTICULOS
+ON ARTICULOS.FABRICANTE = FABRICANTES.Codigo
+GROUP BY FABRICANTES.Nombre
+order by FABRICANTES.nombre ASC;
 -- j. Obtener el precio medio de los productos de cada fabricante mostrando además el nombre del fabricante
+select FABRICANTES.Nombre, avg(ARTICULOS.Precio) as 'Precio_Medio'
+FROM FABRICANTES RIGHT JOIN ARTICULOS
+ON ARTICULOS.FABRICANTE = FABRICANTES.Codigo
+GROUP BY FABRICANTES.Nombre
+order by FABRICANTES.nombre ASC;
 -- k. Obtener los nombres de los fabricantes que ofrezcan productos cuyo precio medio sea mayor o igual a 100€
+SELECT f.nombre, AVG(Precio) as 'Precio_Medio'
+FROM empresa.ARTICULOS as a INNER JOIN empresa.FABRICANTES as f
+ON a.Fabricante = f.codigo
+Group BY f.nombre
+HAVING Precio_Medio >= 100;
 -- l. Obtener el nombre y el precio del artículo más barato
+select Nombre, Precio
+From empresa.ARTICULOS
+Order By Precio ASC
+Limit 1;
