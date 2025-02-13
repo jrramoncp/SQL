@@ -46,4 +46,42 @@ on Codigo = Despacho
 GROUP BY codigo;
 -- e. Mostrar los nombres y apellidos de los directores junto con los de su jefe
 
+-- 4. De las tablas CIENTIFICOS, ASIGNADO_A y PROYECTO:
+-- a. Saca una relación completa de los científicos asignados a cada proyecto. Muestra el DNI, 
+SELECT Nombre, NombreApellidos, DNI 
+FROM PROYECTO INNER JOIN ASIGNADO_A
+ON PROYECTO.ID = ASIGNADO_A.Proyecto
+INNER JOIN CIENTIFICOS
+ON CIENTIFICOS.DNI = ASIGNADO_A.Cientifico
+ORDER BY Nombre;
+-- el nombre del científico, el identificador del proyecto y el nombre del proyecto
+SELECT Nombre, ID ,NombreApellidos
+FROM PROYECTO INNER JOIN ASIGNADO_A
+ON PROYECTO.ID = ASIGNADO_A.Proyecto
+INNER JOIN CIENTIFICOS
+ON CIENTIFICOS.DNI = ASIGNADO_A.Cientifico
+ORDER BY ID;
+-- b. Obtener el número de proyectos al que está asignado cada científico. Mostrar el nombre y el DNI
+SELECT NombreApellidos, DNI, Count(Nombre) as "Proyectos_Totales"
+FROM PROYECTO INNER JOIN ASIGNADO_A
+ON PROYECTO.ID = ASIGNADO_A.Proyecto
+INNER JOIN CIENTIFICOS
+ON CIENTIFICOS.DNI = ASIGNADO_A.Cientifico
+group by DNI;
+-- c. Obtener el número de científicos asignados a cada proyecto. Mostrar el identificador del proyecto y el nombre del proyecto
+SELECT Nombre, ID, Count(DNI) as "Cientificos_totales"
+FROM PROYECTO INNER JOIN ASIGNADO_A
+ON PROYECTO.ID = ASIGNADO_A.Proyecto
+INNER JOIN CIENTIFICOS
+ON CIENTIFICOS.DNI = ASIGNADO_A.Cientifico
+group by ID
+ORDER BY ID;
+-- d. Mostrar el número de horas de dedicación de cada científico
+SELECT NombreApellidos, SUM(Horas) as "Horas_Totales"
+FROM PROYECTO INNER JOIN ASIGNADO_A
+ON PROYECTO.ID = ASIGNADO_A.Proyecto
+INNER JOIN CIENTIFICOS
+ON CIENTIFICOS.DNI = ASIGNADO_A.Cientifico
+GROUP BY NombreApellidos;
+
 
